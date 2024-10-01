@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  # docker build -t initdb:v02 .
+  init-db:
+    image: initdb:v02
+    networks:
+      - bigdata
+
+  # docker build -t streamdata:v01 .
+  streamdata:
+    image: streamdata:v01
+    networks:
+      - bigdata
+networks:
+  bigdata:
+    external: true

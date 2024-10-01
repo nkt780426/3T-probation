@@ -1,0 +1,14 @@
+{
+    "name": "redis-sink-connector",
+    "config": {
+      "connector.class": "com.datamountaineer.streamreactor.connect.redis.sink.RedisSinkConnector",
+      "tasks.max": "1",
+      "topics": "mysql.your_database.your_table",
+      "connect.redis.host": "redis-server",
+      "connect.redis.port": "6379",
+      "connect.redis.export.route.query": "EXPIRE=600", 
+      "connect.redis.error.policy": "THROW",
+      "connect.redis.kcql": "INSERT INTO your_redis_key SELECT * FROM mysql.your_database.your_table PK your_table_key"
+    }
+  }
+  
