@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  # docker build -t initdb:v02 .
+  # docker build -t initdb:v03 .
   init-db:
-    image: initdb:v02
+    image: initdb:v03
     networks:
       - bigdata
 
-  # docker build -t streamdata:v01 .
+  # docker build -t streamdata:v03 .
   streamdata:
-    image: streamdata:v01
+    image: streamdata:v03
     networks:
       - bigdata
 networks:

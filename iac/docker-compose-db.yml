@@ -5,7 +5,7 @@ services:
   # SHOW VARIABLES LIKE 'log_bin';
   # Server_id là 1 do không có cơ chế nhân bản thành cụm mysql.
   db-app:
-    image: mysql:latest
+    image: mysql:8.0
     hostname: db-app
     container_name: db-app
     environment:
@@ -18,11 +18,12 @@ services:
       - "3307:3306"
     volumes:
       - db_app:/var/lib/mysql
+      - ./config/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - bigdata
 
   db-report:
-    image: mysql:latest
+    image: mysql:8.0
     hostname: db-report
     container_name: db-report
     environment:
@@ -35,21 +36,22 @@ services:
       - "3308:3306"
     volumes:
       - db_report:/var/lib/mysql
+      - ./config/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - bigdata
 
-  db-cache:
-    image: redis:latest
-    hostname: db-cache
-    container_name: db-cache
-    ports:
-      - "6380:6379"
-    volumes:
-      - db_cache:/data
-      - ./config/db/redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server /usr/local/etc/redis/redis.conf
-    networks:
-      - bigdata
+  # db-cache:
+  #   image: redis:latest
+  #   hostname: db-cache
+  #   container_name: db-cache
+  #   ports:
+  #     - "6380:6379"
+  #   volumes:
+  #     - db_cache:/data
+  #     - ./config/db/redis.conf:/usr/local/etc/redis/redis.conf
+  #   command: redis-server /usr/local/etc/redis/redis.conf
+  #   networks:
+  #     - bigdata
 
   # minio:
   #   image: quay.io/minio/minio:latest
@@ -73,7 +75,7 @@ services:
   #     - bigdata
 
 volumes:
-  db_cache:
+  # db_cache:
   db_app:
   db_report:
   # datalake:

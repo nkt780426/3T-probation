@@ -59,7 +59,7 @@ Phải clone cả source code của supper set về vì các image này mount v�
 Non-dev: không phải môi trường phát triển (staging, testing hoặc production) được sử dùng để thử nghiệm hệ thống trong các điều kiện gần giống với môi trường production.
 
 3. docker-compose-image-tag.yml: sử dụng image từ Docker-hub và khởi động container => Mã nguồn không ảnh hưởng gì đến container. Bạn có thể chỉ định phiên bản image bằng cách "export TAG=4.0.0-dev"
-
+confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:
     Các service giống hệt như phần 2.
 
 **File docker-compose của supper set cung cấp bị lỗi nhỏ. Service superset-init không chờ service db hoạt động ổn định mà đã chạy. Giải pháp: sửa biến x-superset-depends-on, và thêm version:'3.8' trở lên, thêm helth check 2 service redis và db.**
@@ -72,9 +72,7 @@ Do project quá nhiều service nên có thể xem xét chuyển về chạy Loc
     postgres: nơi lưu trữ metadata của airflow (user, dag, ...).
     redis: message broker của celery.
     airflow-webserver: web server của airflow.
-    airflow-scheduler: Scheduler có vai trò quản lý lên lịch và thực thi các tasks của airflow. Là thành phần quan trọng nhất của airflow, xem version của các provider tại container này.
-    airflow-worker-1: celery worker
-    airflow-triggerer: là 1 service giúp cải thiện khả năng xử lý và phân phối công việc trong môi trường có nhiều task hoặc yêu cầu xử lý cao.
+    airflow-scheduler: Scheduler có vai trò quản lý lên lịch và thực thi các tasks của airflow. Là thành phần quan trọng nhất của airflow, xeconfluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:ao.
     airflow-init:
     airflow-cli:
     flower: công cụ giám sát và quản lý celery. Cung cấp 1 giao diện web qua port 5555 để theo dõi chi tiét các task trong worker.
@@ -117,3 +115,10 @@ python3 kafka_docker_composer.py -h
 # Tạo file docker-compose
 python3 kafka_docker_composer.py -b 3 -c 3 -s 1 -C 1 -k 1 --control-center -p --docker-compose-file docker-compose-kafka.yml
 ```
+
+# Kafka connect api (dùng postman cho tiện)
+1. Xem các connectors đã cài
+```sh
+curl -s localhost:8083/connector-plugins | jq '.[].class'
+```
+2. confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest
