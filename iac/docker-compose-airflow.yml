@@ -65,6 +65,7 @@ x-airflow-common:
     AIRFLOW__WEBSERVER__SECRET_KEY: 'hoangdeptrai'
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}:/opt/airflow/dags
+    - ../src/batch_process:/app
     - /tmp:/tmp
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
