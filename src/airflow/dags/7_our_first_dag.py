@@ -6,18 +6,18 @@ from airflow.operators.bash import BashOperator
 
 default_args = {
     'owner': 'vohoang',
-    'retries': 2,
+    'retries': 5,
     'retry_delay': timedelta(seconds=10)
 }
 
 
 with DAG(
-    dag_id='our_first_dag_v3',
+    dag_id='our_first_dag_v5',
     default_args=default_args,
     description='This is our first dag that we write',
     start_date=datetime(2021, 7, 29, 2),
+    schedule_interval='@daily',
     catchup=False,
-    schedule_interval='@daily'
 ) as dag:
     task1 = BashOperator(
         task_id='first_task',

@@ -1,4 +1,13 @@
-tmp/
-src/kafka/sinkreport/__pycache__
+__pycache__
+ka/sinkreport/__pycache__
 src/kafka/sinkreport/logs/
 src/kafka/sinkreport/services/__pycache__
+gitignore.py
+logs
+.git/logs
+iac/config/superset/.git/logs
+iac/config/superset/superset/reports/logs
+src/airflow/logs
+src/kafka/sink_redis/logs
+a-docker-composer/docker-generator/__pycache__
+src/kafka/sink_mysql/services/__pycache__
