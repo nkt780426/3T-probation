@@ -1,1 +1,4 @@
 tmp/
+src/kafka/sinkreport/__pycache__
+src/kafka/sinkreport/logs/
+src/kafka/sinkreport/services/__pycache__

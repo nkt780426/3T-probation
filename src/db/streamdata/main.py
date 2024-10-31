@@ -18,6 +18,7 @@ mysql_config = {
 
 create_table_query = """
     CREATE TABLE IF NOT EXISTS sales_pipeline (
+        id INT AUTO_INCREMENT PRIMARY KEY,
         opportunity_id VARCHAR(255),
         sales_agent VARCHAR(255),
         product VARCHAR(255),
@@ -26,7 +27,7 @@ create_table_query = """
         engage_date DATE,
         close_date DATE,
         close_value DECIMAL(20, 2),
-        PRIMARY KEY (opportunity_id),
+        UNIQUE (opportunity_id),
         FOREIGN KEY (sales_agent) REFERENCES sales_teams(sales_agent),
         FOREIGN KEY (product) REFERENCES products(product),
         FOREIGN KEY (account) REFERENCES accounts(account)

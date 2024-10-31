@@ -5,3 +5,6 @@ Nơi lấy dataset: https://docs.google.com/document/d/17Qw6hgFiA0kg7KoI5-SHuIoO
 - products: Các loại sp mà các công ty có thể buôn bán.
 - sale_pipeline (fact table gồm 8800 record): gồm sale agent, product name, company name, sales pipeline stage, ....
 - sale_teams: detail of sale agent.
+
+# Redis
+Nguồn: https://redis.io/docs/latest/operate/redisinsight/

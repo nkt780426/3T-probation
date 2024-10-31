@@ -22,6 +22,7 @@ csv_files = {
 create_table_queries = {
     'accounts': """
         CREATE TABLE IF NOT EXISTS accounts (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             account VARCHAR(255) NOT NULL,
             sector VARCHAR(255) NOT NULL,
             year_established INT NOT NULL,
@@ -29,27 +30,30 @@ create_table_queries = {
             employees INT NOT NULL,
             office_location VARCHAR(255) NOT NULL,
             subsidiary_of VARCHAR(255) NULL,
-            PRIMARY KEY (account)
+            UNIQUE (account)
         );
     """,
     'products': """
         CREATE TABLE IF NOT EXISTS products (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             product VARCHAR(255),
             series VARCHAR(255),
             sales_price DECIMAL(10, 2),
-            PRIMARY KEY (product)
+            UNIQUE (product)
         );
     """,
     'sales_teams': """
         CREATE TABLE IF NOT EXISTS sales_teams (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             sales_agent VARCHAR(255),
             manager VARCHAR(255),
             regional_office VARCHAR(255),
-            PRIMARY KEY (sales_agent)
+            UNIQUE (sales_agent)
         );
     """,
     'sales_pipeline': """
         CREATE TABLE IF NOT EXISTS sales_pipeline (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             opportunity_id VARCHAR(255),
             sales_agent VARCHAR(255),
             product VARCHAR(255),
@@ -58,7 +62,7 @@ create_table_queries = {
             engage_date DATE,
             close_date DATE,
             close_value DECIMAL(20, 2),
-            PRIMARY KEY (opportunity_id),
+            UNIQUE (opportunity_id),
             FOREIGN KEY (sales_agent) REFERENCES sales_teams(sales_agent),
             FOREIGN KEY (product) REFERENCES products(product),
             FOREIGN KEY (account) REFERENCES accounts(account)

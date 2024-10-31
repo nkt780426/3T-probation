@@ -282,3 +282,13 @@ Debezium không thể lưu schema id và version được trong header.
   Tắt chế độ PK-FK ở sink đi, đảm bảo các message ở các topic sẽ được xử lý ngay lập tức => Không đảm bảo được tính đồng bộ nhưng tận dụng được khả năng tiêu thụ phân tán của kafka thậm trí dùng JDBC sink connector thay vì consumer luôn (JDBC sink connector chỉ đảm bảo xử lý 1 table 1 thời điểm)
 4. Giải pháp 4: hay nhất
   Phát triển từ giải pháp 2, nó ngu người ở chỗ tạo table mới và triggle trên source. Điều này sẽ làm db source thêm việc và nếu dữ là dữ liệu stream thì độ vất chắc chắn lớn. Mà db source thường lại là db của 1 app production phục vụ end users.
+# Vấn đề của project
+1. Không tận dụng được tính phân tán của kafka. Chỉ có 1 consumer xử lý => Chậm => Chẳng sao vì báo cáo stream chậm thế nào chẳng được, quan trọng app không sập
+
+2. Khi sử dụng debezium thì bắt buộc phải code consumer => Dẫn đến nhiều vấn đề.
+  Làm thế nào khi 2 consumer cùng tương tác 1 row trong database
+    câu lệnh connection.commit() thực ra là tạo 1 transaction nên không cần phải lo vấn đề này.
+  Vấn đề shema evolution (Thay đổi schema theo thời gian), mỗi lần như vậy sẽ phải code lại ?
+    Code khôn thì không cần.
+3. Có 4 trạng thái của kafka connect là 'c', 'u', 'd' và 'r'
+  r = read: Điều này xảy ra khi Debezium thực hiện snapshot lần đầu tiên từ nguồn dữ liệu và lưu tất cả các bản ghi hiện có vào Kafka. Tức là thực hiện debezium sau.

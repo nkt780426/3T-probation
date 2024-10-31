@@ -122,3 +122,5 @@ python3 kafka_docker_composer.py -b 3 -c 3 -s 1 -C 1 -k 1 --control-center -p --
 curl -s localhost:8083/connector-plugins | jq '.[].class'
 ```
 2. confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest
+
+docker build . --tag extending_airflow:v01

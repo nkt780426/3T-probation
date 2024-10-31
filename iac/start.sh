@@ -14,7 +14,3 @@ docker compose -f docker-compose-kafka.yml -p kafka up -d
 docker compose -f docker-compose-superset.yml -p superset down superset-init
 
 docker compose -f docker-compose-airflow.yml -p airflow down airflow-init
-
-# docker compose -f docker-compose-initdb.yml -p demo up init-db -d
-
-# docker compose -f docker-compose-initdb.yml -p demo up streamdata -d

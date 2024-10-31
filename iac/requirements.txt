@@ -1,0 +1,7 @@
+mysql-connector-python==8.0.26
+confluent_kafka[avro]
+urllib3
+requests
+fastavro
+pymysql
+minio
