@@ -11,3 +11,4 @@ src/airflow/logs
 src/kafka/sink_redis/logs
 a-docker-composer/docker-generator/__pycache__
 src/kafka/sink_mysql/services/__pycache__
+tmp/
