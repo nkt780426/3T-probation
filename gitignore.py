@@ -2,7 +2,7 @@ import os
 import concurrent.futures
 
 # Danh sách các tên thư mục cần thêm vào .gitignore
-directory_names_to_ignore = ['logs', '__pycache__']
+directory_names_to_ignore = ['logs', '__pycache__', 'tmp']
 
 # Hàm kiểm tra và thêm thư mục vào .gitignore
 def check_and_add_to_gitignore(directories):

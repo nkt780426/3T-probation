@@ -1,0 +1,21 @@
+
+version: 2
+
+models:
+  - name: dim_account
+    description: "Dùng để phân tích bảng fact theo các trường account"
+    columns:
+      - name: account
+        description: "Đảm bảo không tên công ty nào trùng nhau và không null"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_close_date
+    description: "Dùng để phân tích bảng fact theo chiều close date"
+    columns:
+      - name: close_date
+        description: "test"
+        tests:
+          - unique
+          - not_null

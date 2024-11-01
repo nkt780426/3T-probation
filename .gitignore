@@ -18,3 +18,5 @@ src/batch_process/move_cache_to_minio/logs
 src/batch_process/move_cache_to_minio/services/__pycache__
 src/airflow/dags/__pycache__
 tmp/
+src/logs
+src/cube/logs

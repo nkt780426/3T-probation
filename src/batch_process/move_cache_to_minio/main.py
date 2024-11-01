@@ -16,8 +16,8 @@ redis_client = Redis(host='db-redis', port=6379, db=0)
 # Connect to MinIO
 minio_client = Minio(
     endpoint="minio:9000",
-    access_key="cE09RlehOwFVq98rGhMq",
-    secret_key="7wdHR2pr1gZZcT9rHNHs9U5h15vyht8qwMSarqKA",
+    access_key="7FtQ1iwnnZgdQWbr9YsO",
+    secret_key="JEdFntys1p9QH1wCl19UKw9pDa6BZxUlnF5zPCez",
     secure=False
 )
 

@@ -1,0 +1,22 @@
+cube:
+  target: dev
+  outputs:
+    dev:
+      type: mysql
+      server: localhost
+      port: 3308
+      database: report
+      schema: data_mart
+      username: vohoang
+      password: '12345678'
+      driver: MySQL ODBC 8.0 ANSI Driver
+      threads: 2
+    # prod:
+    #   type: mysql
+    #   server: [server/host]
+    #   port: [port]  # optional
+    #   database: [schema] # optional, should be same as schema
+    #   schema: [schema]
+    #   username: [username]
+    #   password: [password]
+    #   driver: MySQL ODBC 8.0 ANSI Driver
