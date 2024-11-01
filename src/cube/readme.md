@@ -2,4 +2,3 @@ CREATE DATABASE data_mart;
 
 GRANT ALL PRIVILEGES ON data_mart.* TO 'vohoang'@'%';
 FLUSH PRIVILEGES;
-
