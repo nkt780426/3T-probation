@@ -14,7 +14,7 @@ value_avro_deserializer = AvroDeserializer(schema_registry_client)
 # Cấu hình consumer
 consumer_conf = {
     'bootstrap.servers': 'localhost:9091',
-    'group.id': 'mysql-sink-v09',
+    'group.id': 'redis-sink-v09',
     'key.deserializer': key_avro_deserializer,
     'value.deserializer': value_avro_deserializer,
     'auto.offset.reset': 'earliest'  # Đọc từ đầu nếu không có offset
