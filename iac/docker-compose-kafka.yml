@@ -38,6 +38,7 @@ services:
             - 19091:19091
         volumes:
             - ./config/kafka/kafka_config.yml:/tmp/kafka_config.yml
+            - kafka-controller-data:/var/lib/kafka/data
         networks:
             - bigdata
 
@@ -86,6 +87,7 @@ services:
             # - 8090:8090
         volumes:
             - ./config/kafka/kafka_config.yml:/tmp/kafka_config.yml
+            - kafka-broker-data:/var/lib/kafka/data
         networks:
             - bigdata
 
@@ -155,6 +157,39 @@ services:
             - ./config/kafka/connect-plugin-jars:/data/connect-plugin-jars
         networks:
             - bigdata
+    
+    ksqldb-1:
+        image: confluentinc/cp-ksqldb-server:7.7.0
+        hostname: ksqldb-1
+        container_name: ksqldb-1
+
+        healthcheck:
+            test: curl -fail --silent http://ksqldb-1:8088/healthcheck --output /dev/null || exit 1
+            interval: 10s
+            retries: 20
+            start_period: 20s
+        depends_on:
+            kafka-1:
+                condition: service_healthy
+            schema-registry-1:
+                condition: service_healthy
+            kafka-connect-1:
+                condition: service_healthy
+        environment:
+            KSQL_LISTENERS: http://0.0.0.0:8088
+            KSQL_BOOTSTRAP_SERVERS: kafka-1:19092
+            KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: true
+            KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: true
+            KSQL_KSQL_CONNECT_URL: http://kafka-connect-1:8083
+            KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry-1:8081
+            KSQL_KSQL_SERVICE_ID: kafka-docker-composer
+            KSQL_KSQL_HIDDEN_TOPICS: ^_.*
+            KSQL_KSQL_INTERNAL_TOPICS_REPLICAS: 1
+            KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR: 1
+        ports:
+            - 8088:8088
+        networks:
+            - bigdata
 
     kafka-ui:
         hostname: kafka-ui
@@ -179,6 +214,10 @@ services:
             DYNAMIC_CONFIG_ENABLED: 'true'
         networks:
             - bigdata
+
+volumes:
+    kafka-controller-data:
+    kafka-broker-data:
 
 networks:
     bigdata:

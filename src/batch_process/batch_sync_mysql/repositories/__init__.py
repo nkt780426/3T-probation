@@ -15,7 +15,7 @@ mysql_connection = mysql.connector.connect(**mysql_config)
 # Connect to MinIO
 minio_client = Minio(
     endpoint="minio:9000",
-    access_key="7FtQ1iwnnZgdQWbr9YsO",
-    secret_key="JEdFntys1p9QH1wCl19UKw9pDa6BZxUlnF5zPCez",
+    access_key="mPu6afx3W3SnGX2GWJ84",
+    secret_key="jsQbHNbZP6ZNqzhoKfN6DZc9ua1cXTm2nshEvwGZ",
     secure=False
 )
